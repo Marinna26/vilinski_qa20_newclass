@@ -8,7 +8,7 @@ public class BoardCreationTests extends  TestBase{
     public void ensurePreconditions() throws InterruptedException {
         if(!isUserLoggedIn()){
             login("marinna2011@ukr.net", "12345Com");
-        };
+        }
     }
 
     @Test

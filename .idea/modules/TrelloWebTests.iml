@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="TrelloWebTests" external.linked.project.path="$MODULE_DIR$/../../TrelloWebTests" external.root.project.path="$MODULE_DIR$/../../TrelloWebTests" external.system.id="GRADLE" external.system.module.group="TelRan" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
-  <component name="ExternalSystem" linkedProjectPath="$MODULE_DIR$/../../TrelloWebTests" rootProjectPath="$MODULE_DIR$/../../TrelloWebTests" />
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="TelRan" externalSystemModuleVersion="1.0-SNAPSHOT" linkedProjectId="TrelloWebTests" linkedProjectPath="$MODULE_DIR$/../../TrelloWebTests" rootProjectPath="$MODULE_DIR$/../../TrelloWebTests" />
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../TrelloWebTests">
       <excludeFolder url="file://$MODULE_DIR$/../../TrelloWebTests/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../TrelloWebTests/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../TrelloWebTests/out" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
