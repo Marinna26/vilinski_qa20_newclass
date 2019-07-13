@@ -6,18 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-    Board board;
-    SessionHelper session;
     WebDriver wd;
 
     public void init() throws InterruptedException {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.get("https://trello.com");
-        session = new SessionHelper(wd);
-       session.login("marinna2011@ukr.net", "12345Com");
-
-       board = new Board(wd);
+        login("marinna2011@ukr.net", "12345Com");
     }
 
     public void stop() {
@@ -28,39 +23,76 @@ public class ApplicationManager {
         Thread.sleep(millis);
     }
 
+    public void confirmLogin() {
+        click(By.id("login"));
+    }
 
-
-  public void click(By locator) {
+    public void click(By locator) {
         wd.findElement(locator).click();
     }
 
+    public void fillLoginForm(String email, String password) {
+        type(By.id("user"), email);
+        type(By.name("password"), password);
+    }
 
-
-   public void type(By locator, String text) {
+    public void type(By locator, String text) {
         click(locator);
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
     }
 
+    public void clickLoginButton() {
+        click(By.cssSelector("[href='/login']"));
+    }
 
+    public void login(String email, String pwd) throws InterruptedException {
+        clickLoginButton();
+        fillLoginForm(email, pwd); //"elena.telran@yahoo.com", "12345.com"
+        pause(3000);
+        confirmLogin();
+        pause(10000);
+    }
 
+    public  void confirmBoardCreation(){
+        click(By.cssSelector("[data-test-id=header-create-board-submit-button]"));
+    }
 
+    public void typeBoardName(String boardName) {
+        type(By.cssSelector("[data-test-id=header-create-board-title-input]"), boardName);
+
+    }
+
+    public void selectCreateBoardFromDropDown() {
+        click(By.cssSelector("[data-test-id=header-create-board-button]"));
+    }
 
     public void clickOnPlusButtonOnHeader() {
         click(By.cssSelector("[name=add]"));
     }
 
+    public boolean isElementPresent(By locator){
+        try {
+            wd.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean isElementPresent2(By locator){
+        return  wd.findElements(locator).size()>0;
+    }
+
+    public boolean isUserLoggedIn() {
+        return isElementPresent2(By.cssSelector("[href='/']"));
+    }
 
     public void returnToHomePage() {
         click(By.cssSelector("[href='/']"));
     }
 
-
-    public SessionHelper getSession() {
-        return session;
-    }
-
-    public Board getBoard() {
-        return board;
+    public int getPersonalBoardsCount() {
+        return  wd.findElements(By.xpath("//span[@class='icon-lg icon-member']/../../..//li")).size()-1;
     }
 }

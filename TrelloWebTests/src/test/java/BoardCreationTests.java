@@ -5,24 +5,24 @@ import org.testng.annotations.Test;
 public class BoardCreationTests extends  TestBase{
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException {
-        if(!app.getSession().isUserLoggedIn()){
-            app.getSession().login("marinna2011@ukr.net", "12345Com");
+        if(!app.isUserLoggedIn()){
+            app.login("marinna2011@ukr.net", "12345Com");
         }
     }
 
     @Test
     public void testBoardCreationFromHeader() throws InterruptedException {
-        int before = app.getBoard().getPersonalBoardsCount();
+        int before = app.getPersonalBoardsCount();
         app.clickOnPlusButtonOnHeader();
-        app.getBoard().selectCreateBoardFromDropDown();
+        app.selectCreateBoardFromDropDown();
         app.pause(7000);
-        app.getBoard().typeBoardName("qa20" + System.currentTimeMillis());
-        app.getBoard().confirmBoardCreation();
+        app.typeBoardName("qa20" + System.currentTimeMillis());
+        app.confirmBoardCreation();
         app.pause(10000);
         app.returnToHomePage();
         app.pause(7000);
 
-        int after = app.getBoard().getPersonalBoardsCount();
+        int after = app.getPersonalBoardsCount();
         Assert.assertEquals(after, before +1);
     }
 
