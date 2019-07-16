@@ -1,7 +1,10 @@
+package com.telran.qa20.tests;
+
 import org.testng.annotations.Test;
 
 public class TrelloLoginTest extends  TestBase{
-    @Test
+
+    @Test(enabled = false)
     public void loginTest() throws InterruptedException {
         app.getSession().clickLoginButton();
         app.getSession().fillLoginForm("marinna2011@ukr.net", "12345Сom");
