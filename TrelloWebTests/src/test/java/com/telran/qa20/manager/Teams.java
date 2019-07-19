@@ -1,5 +1,6 @@
 package com.telran.qa20.manager;
 
+import com.telran.qa20.model.Team;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -25,7 +26,7 @@ public class Teams extends HelperBase{
         click(By.xpath("//button[@data-test-id='header-create-team-submit-button']"));
     }
 
-    public void fillTeamForm(Teams team) {
+    public void fillTeamForm(Team team) {
         typeTeamName(team.getTeamName());
         typeTeamDescription(team.getTeamDescription());
     }
@@ -33,5 +34,7 @@ public class Teams extends HelperBase{
     private void typeTeamDescription(String teamDescription) {
         type(By.cssSelector("[name = desc]"), teamDescription);
     }
+
+
 }
 

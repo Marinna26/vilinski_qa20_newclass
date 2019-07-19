@@ -1,12 +1,11 @@
-package com.telran.qa20.tests;
 
-import com.telran.qa20.model.Team;
-import org.openqa.selenium.By;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+        package com.telran.qa20.tests;
 
-public class TeamCreationTest extends TestBase {
+        import com.telran.qa20.model.Team;
+        import org.testng.annotations.BeforeMethod;
+        import org.testng.annotations.Test;
+
+public class TeamCreation extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException {
         if(!app.getSession().isUserLoggedIn())
@@ -22,14 +21,15 @@ public class TeamCreationTest extends TestBase {
         app.getTeams().selectTeamGroup();
 
         app.getTeams().fillTeamForm(new Team()
-                .withTeamName("QA-20" + System.currentTimeMillis());
+                .withTeamName("QA-20" + System.currentTimeMillis())
+                .withTeamDescription("description qa20"));
 
         app.getSession().pause(7000);
         app.getTeams().submitCreateTeam();
         app.returnToHomePage();
 
         //int after = app.getTeams().getTeamsCount();
-       // Assert.assertEquals(after,before+1);
+        // Assert.assertEquals(after,before+1);
 
     }
 
