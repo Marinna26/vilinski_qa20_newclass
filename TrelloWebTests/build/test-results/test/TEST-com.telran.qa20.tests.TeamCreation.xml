@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telran.qa20.tests.TeamCreation" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-07-22T00:15:53" hostname="Acer_TravelMate" time="21.117">
+  <properties/>
+  <testcase name="createTeam" classname="com.telran.qa20.tests.TeamCreation" time="21.117"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
