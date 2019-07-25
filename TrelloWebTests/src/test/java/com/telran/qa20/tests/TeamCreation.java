@@ -7,6 +7,7 @@
         import org.testng.annotations.DataProvider;
         import org.testng.annotations.Test;
 
+        import java.awt.*;
         import java.io.*;
         import java.util.ArrayList;
         import java.util.Iterator;
@@ -67,6 +68,11 @@
 
         //int after = app.getTeams().getTeamsCount();
         // Assert.assertEquals(after,before+1);
+
+    }
+    @Test
+    public void changePhoto() throws InterruptedException, IOException, AWTException {
+         app.getTeams().changePhoto();
 
     }
 

@@ -6,6 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+
 public class Teams extends HelperBase{
 
     public Teams(WebDriver driver) {
@@ -37,11 +42,36 @@ public class Teams extends HelperBase{
         type(By.cssSelector("[name = desc]"), teamDescription);
     }
 
-    public void changePhoto(){
+    public void changePhoto() throws InterruptedException, AWTException {
+        wd.findElement(By.cssSelector(".js-open-header-member-menu")).click();
+        wd.findElement(By.xpath("//a[@data-test-id='header-member-menu-profile']")).click();
         Actions actions = new Actions(wd);
-        WebElement photo = wd.findElement(By.cssSelector(""));
+        WebElement photo = wd.findElement(By.xpath("//button[@class='_2e97X7K2YRLv4Q']"));
         actions.moveToElement(photo).click().perform();
+        pause(2000);
+
+
+        Robot robot = new Robot();
+        String filePath = "C/2.jpg";
+        wd.findElement(By.xpath("//button[@class='_1YROXclZyiVJEd']")).click();
+
+        pause(2000);
+        StringSelection stringSelection = new StringSelection("C:\\Users\\Marina\\Documents\\GitHub\\vilinski_qa20_newclass\\TrelloWebTests\\src\\test\\resources\\2.jpg");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
+        pause(1000);
+
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+
+        pause(1000);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        pause(3000);
+
     }
+
 
 }
 
