@@ -2,19 +2,40 @@ package com.telran.qa20.manager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     Board board;
     SessionHelper session;
-    WebDriver wd;
+    UserHelper user;
+    EventFiringWebDriver wd;
     Teams teams;
     String browser;
+
+    public static class MyListener extends AbstractWebDriverEventListener {
+        @Override
+        public void beforeFindBy(By by, WebElement element, WebDriver driver) {
+            System.out.println("start search " + by);
+        }
+
+        @Override
+        public void afterFindBy(By by, WebElement element, WebDriver driver) {
+            System.out.println(by + " found");
+        }
+
+        @Override
+        public void onException(Throwable throwable, WebDriver driver) {
+            System.out.println(throwable);
+        }
+    }
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -23,19 +44,23 @@ public class ApplicationManager {
     public void init() throws InterruptedException {
 
         if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
+            wd = new EventFiringWebDriver(new ChromeDriver());
         } else if (browser.equals(BrowserType.FIREFOX)) {
-            wd = new FirefoxDriver();
+            wd = new EventFiringWebDriver(new FirefoxDriver());
         } else if (browser.equals(BrowserType.IE)) {
-            wd = new InternetExplorerDriver();
+            wd = new EventFiringWebDriver(new InternetExplorerDriver());
         }
+
+        wd.register(new MyListener());
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.get("https://trello.com");
-        session = new SessionHelper(wd);
-       session.login("marinna2011@ukr.net", "12345Com");
 
-       board = new Board(wd);
-       teams = new Teams(wd);
+
+        session = new SessionHelper(wd);
+        session.login("marinna2011@ukr.net", "12345Com");
+        user = new UserHelper(wd);
+        board = new Board(wd);
+        teams = new Teams(wd);
     }
 
     public void stop() {
@@ -84,5 +109,9 @@ public class ApplicationManager {
 
     public Teams getTeams() {
         return teams;
+    }
+
+    public UserHelper getUser() {
+        return user;
     }
 }

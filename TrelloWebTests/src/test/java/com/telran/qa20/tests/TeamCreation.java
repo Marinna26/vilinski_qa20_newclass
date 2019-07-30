@@ -2,12 +2,9 @@
         package com.telran.qa20.tests;
 
         import com.telran.qa20.model.Team;
-
         import org.testng.annotations.BeforeMethod;
         import org.testng.annotations.DataProvider;
         import org.testng.annotations.Test;
-
-        import java.awt.*;
         import java.io.*;
         import java.util.ArrayList;
         import java.util.Iterator;
@@ -70,10 +67,10 @@
         // Assert.assertEquals(after,before+1);
 
     }
-    @Test
+    /*@Test
     public void changePhoto() throws InterruptedException, IOException, AWTException {
          app.getTeams().changePhoto();
 
-    }
+    }*/
 
 }
