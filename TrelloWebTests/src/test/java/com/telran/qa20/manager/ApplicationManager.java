@@ -36,7 +36,7 @@ public class ApplicationManager {
         public void onException(Throwable throwable, WebDriver driver) {
             System.out.println(throwable);
             File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            File screenshot = new File("screenshot-" + System.currentTimeMillis()+".png");
+            File screenshot = new File("src/test/screenshots/screenshot-" + System.currentTimeMillis()+".png");
             try {
                 Files.copy(tmp,screenshot);
             } catch (IOException e) {
