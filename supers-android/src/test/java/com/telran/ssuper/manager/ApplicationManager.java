@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,16 @@ public class ApplicationManager {
     }
 
     public void init() throws InterruptedException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", "qa20_class");
+        capabilities.setCapability( "platformVersion", "8.0");
+        capabilities.setCapability( "automationName", "Appium");
+        capabilities.setCapability( "appPackage", "com.example.svetlana.scheduler");
+        capabilities.setCapability( "appActivity", ".presentation.splashScreen.SplashScreenActivity");
+        capabilities.setCapability( "app", "C:/Users/Marina/Documents/GitHub/vilinski_qa20_newclass/supers-android/src/test/resources/v.0.0.2.apk");
+
+
 
 //        if (browser.equals(BrowserType.CHROME)) {
 //            wd = new ChromeDriver();
