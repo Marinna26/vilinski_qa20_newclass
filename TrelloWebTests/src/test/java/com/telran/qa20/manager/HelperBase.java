@@ -3,9 +3,12 @@ package com.telran.qa20.manager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HelperBase {
     WebDriver wd;
+    WebDriverWait wait;
 
 
     public HelperBase(WebDriver wd) {
@@ -15,6 +18,15 @@ public class HelperBase {
     public void click(By locator) {
         wd.findElement(locator).click();
     }
+
+    public void waitForElementAndClick(Long timeout, By locator) {
+        new WebDriverWait(wd, timeout)
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
+
+        wd.findElement(locator).click();
+    }
+
+
 
     public void type(By locator, String text) {
         if(text!=null) {

@@ -3,12 +3,7 @@ package com.telran.qa20.manager;
 import com.telran.qa20.model.Team;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 
 
 public class Teams extends HelperBase{
@@ -42,7 +37,8 @@ public class Teams extends HelperBase{
         type(By.cssSelector("[name = desc]"), teamDescription);
     }
 
-    public void changePhoto() throws InterruptedException, AWTException {
+
+     /*public void changePhoto() throws InterruptedException, AWTException {
         wd.findElement(By.cssSelector(".js-open-header-member-menu")).click();
         wd.findElement(By.xpath("//a[@data-test-id='header-member-menu-profile']")).click();
         Actions actions = new Actions(wd);
@@ -70,7 +66,7 @@ public class Teams extends HelperBase{
         robot.keyPress(KeyEvent.VK_ENTER);
         pause(3000);
 
-    }
+    }*/
 
 
 }
