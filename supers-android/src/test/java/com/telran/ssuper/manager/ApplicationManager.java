@@ -1,5 +1,7 @@
 package com.telran.ssuper.manager;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,19 +10,19 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
     SessionHelper session;
-    WebDriver wd;
-    String browser;
+    AppiumDriver driver;
 
-    public ApplicationManager(String browser) {
-        this.browser = browser;
-    }
 
-    public void init() throws InterruptedException {
+
+
+    public void init() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "qa20_class");
@@ -29,20 +31,10 @@ public class ApplicationManager {
         capabilities.setCapability( "appPackage", "com.example.svetlana.scheduler");
         capabilities.setCapability( "appActivity", ".presentation.splashScreen.SplashScreenActivity");
         capabilities.setCapability( "app", "C:/Users/Marina/Documents/GitHub/vilinski_qa20_newclass/supers-android/src/test/resources/v.0.0.2.apk");
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
 
-
-
-//        if (browser.equals(BrowserType.CHROME)) {
-//            wd = new ChromeDriver();
-//        } else if (browser.equals(BrowserType.FIREFOX)) {
-//            wd = new FirefoxDriver();
-//        } else if (browser.equals(BrowserType.IE)) {
-//            wd = new InternetExplorerDriver();
-//        }
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wd.get("https://trello.com");
-        session = new SessionHelper(wd);
-       session.login("marinna2011@ukr.net", "12345Com");
+        session = new SessionHelper(driver);
+//       session.login("marinna2011@ukr.net", "12345Com");
 
     }
 

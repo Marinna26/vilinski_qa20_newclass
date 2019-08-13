@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SessionHelper extends HelperBase{
-    public SessionHelper(WebDriver wd) {
-        super(wd);
+    public SessionHelper(WebDriver driver) {
+        super(driver);
     }
     public boolean isUserLoggedIn() {
         return isElementPresent2(By.cssSelector("[href='/']"));
@@ -23,11 +23,11 @@ public class SessionHelper extends HelperBase{
     }
 
     public void confirmLogin() {
-        click(By.id("login"));
+        click(By.id("//*[@id='login_btn']"));
     }
 
     public void fillLoginForm(String email, String password) {
-        type(By.id("user"), email);
-        type(By.name("password"), password);
+        type(By.id("log_email_input"), email);
+        type(By.name("log_password_input"), password);
     }
 }
