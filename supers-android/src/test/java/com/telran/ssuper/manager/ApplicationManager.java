@@ -18,6 +18,7 @@ public class ApplicationManager {
 
     SessionHelper session;
     AppiumDriver driver;
+    WelcomeActivityHelper welcome;
 
 
 
@@ -35,6 +36,7 @@ public class ApplicationManager {
 
         session = new SessionHelper(driver);
 //       session.login("marinna2011@ukr.net", "12345Com");
+        welcome = new WelcomeActivityHelper(driver);
 
     }
 
